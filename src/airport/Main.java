@@ -3,6 +3,7 @@ package airport;
 import java.util.List;
 
 import airport.flight.FixedPriceFlight;
+import airport.flightpackage.extra.ChampagneDuringFlightPackage;
 import airport.wallet.StandardWallet;
 
 public class Main
@@ -16,11 +17,13 @@ public class Main
 		manager.add(pisaViareggio);
 		manager.add(pisaFlorence);
 		
-		Passenger passenger = new Passenger("Marco", new StandardWallet(1000));
+		Passenger passenger = new Passenger("Marco", new StandardWallet(10000));
 		List<Flight> pisaFlights = manager.list(it -> "Pisa".equals(it.getOrigin()));
 		
 		for (Flight flight : pisaFlights) {
-			passenger.bookFlight(flight);
+			FlightPackage pack = new ChampagneDuringFlightPackage(flight.getPackage());
+			passenger.bookFlight(pack);
+			flight.bookSeat(passenger);
 		}
 	}
 }

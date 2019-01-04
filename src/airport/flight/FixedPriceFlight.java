@@ -2,6 +2,7 @@ package airport.flight;
 
 import airport.Aircraft;
 import airport.Flight;
+import airport.FlightPackage;
 import airport.Passenger;
 
 public class FixedPriceFlight 
@@ -29,8 +30,8 @@ public class FixedPriceFlight
 	}
 
 	@Override
-	public double getPrice()
+	public FlightPackage getPackage()
 	{
-		return price;
+		return () -> price;
 	}
 }

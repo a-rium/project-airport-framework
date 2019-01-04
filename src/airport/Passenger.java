@@ -11,11 +11,10 @@ public class Passenger
 		this.wallet = wallet;
 	}
 	
-	public void bookFlight(Flight flight)
+	public void bookFlight(FlightPackage flight)
 	{
 		System.out.println("Booking flight...");
 		wallet.charge(flight.getPrice());
-		flight.bookSeat(this);
 	}
 	
 	public String getName()

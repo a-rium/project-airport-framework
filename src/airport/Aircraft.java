@@ -3,13 +3,11 @@ package airport;
 public class Aircraft
 {
 	private int id;
-	private int capacity;
 	private int availableSeats;
 	
 	public Aircraft(int id, int capacity)
 	{
 		this.id = id;
-		this.capacity = capacity;
 		this.availableSeats = capacity;
 	}
 	
@@ -26,5 +24,10 @@ public class Aircraft
 	public boolean isFull()
 	{
 		return availableSeats == 0;
+	}
+	
+	public int getId()
+	{
+		return id;
 	}
 }

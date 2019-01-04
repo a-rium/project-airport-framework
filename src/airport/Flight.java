@@ -28,6 +28,6 @@ public abstract class Flight
 		return aircraft;
 	}
 
-	public abstract double getPrice();
+	public abstract FlightPackage getPackage();
 	public abstract void bookSeat(Passenger passenger);
 }

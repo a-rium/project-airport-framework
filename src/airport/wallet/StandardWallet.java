@@ -22,6 +22,7 @@ public class StandardWallet
 	public void charge(double amount)
 	{
 		balance -= amount;
+		System.out.printf("Wallet: charged %.2f$, new balance: %.2f\n", amount, balance);
 	}
 
 	@Override
