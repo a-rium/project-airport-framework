@@ -8,6 +8,7 @@ public class Passenger
 	public Passenger(String name, Wallet wallet)
 	{
 		this.name = name;
+		this.wallet = wallet;
 	}
 	
 	public void bookFlight(Flight flight)

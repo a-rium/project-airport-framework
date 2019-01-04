@@ -9,9 +9,10 @@ public class Main
 {
 	public static void main(String[] args)
 	{
+		Aircraft boeing = new Aircraft(0, 1);
 		FlightManager manager = new FlightManager();
-		Flight pisaFlorence = new FixedPriceFlight("Pisa", "Florence", 100);
-		Flight pisaViareggio = new FixedPriceFlight("Pisa", "Viareggio", 1000);
+		Flight pisaFlorence = new FixedPriceFlight("Pisa", "Florence", boeing, 100);
+		Flight pisaViareggio = new FixedPriceFlight("Pisa", "Viareggio", boeing, 1000);
 		manager.add(pisaViareggio);
 		manager.add(pisaFlorence);
 		

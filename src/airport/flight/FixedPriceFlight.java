@@ -1,5 +1,6 @@
 package airport.flight;
 
+import airport.Aircraft;
 import airport.Flight;
 import airport.Passenger;
 
@@ -8,16 +9,23 @@ public class FixedPriceFlight
 {
 	private double price;
 
-	public FixedPriceFlight(String origin, String destination, double price)
+	public FixedPriceFlight(String origin, String destination, Aircraft aircraft, double price)
 	{
-		super(origin, destination);
+		super(origin, destination, aircraft);
 		this.price = price;
 	}
 
 	public void bookSeat(Passenger passenger)
 	{
 		System.out.printf("%s -> %s flight\n", getOrigin(), getDestination());
-		System.out.printf("Booking seat for %s\n", passenger.getName());
+		
+		Aircraft aircraft = getAircraft();
+		if (!aircraft.isFull()) {
+			aircraft.bookSeat();
+			System.out.printf("Booking seat for %s\n", passenger.getName());			
+		} else {
+			System.out.println("The aircraft is full");
+		}
 	}
 
 	@Override
