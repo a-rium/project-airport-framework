@@ -1,5 +1,7 @@
 package airport;
 
+import generic.ObserverRegistry;
+
 public abstract class Flight
 {
 	private String origin;
