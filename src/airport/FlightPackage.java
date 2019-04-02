@@ -1,6 +1,5 @@
 package airport;
 
-public interface FlightPackage
-{
+public interface FlightPackage {
 	public double getPrice();
 }

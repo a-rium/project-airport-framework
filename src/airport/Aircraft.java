@@ -1,33 +1,27 @@
 package airport;
 
-public class Aircraft
-{
+public class Aircraft {
 	private int id;
 	private int availableSeats;
-	
-	public Aircraft(int id, int capacity)
-	{
+
+	public Aircraft(int id, int capacity) {
 		this.id = id;
 		this.availableSeats = capacity;
 	}
-	
-	public void bookSeat()
-	{
+
+	public void bookSeat() {
 		availableSeats -= 1;
 	}
-	
-	public void freeSeat()
-	{
+
+	public void freeSeat() {
 		availableSeats += 1;
 	}
-	
-	public boolean isFull()
-	{
+
+	public boolean isFull() {
 		return availableSeats == 0;
 	}
-	
-	public int getId()
-	{
+
+	public int getId() {
 		return id;
 	}
 }
