@@ -1,4 +1,4 @@
-package aircraft.gui;
+package airport.gui;
 
 import java.util.ArrayList;
 import java.util.List;

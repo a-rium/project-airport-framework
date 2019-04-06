@@ -1,4 +1,4 @@
-package aircraft.gui;
+package airport.gui;
 
 import airport.Aircraft;
 

@@ -1,4 +1,4 @@
-package aircraft.gui;
+package airport.gui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
