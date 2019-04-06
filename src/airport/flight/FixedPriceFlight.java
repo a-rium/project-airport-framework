@@ -13,6 +13,7 @@ public class FixedPriceFlight extends Flight {
 		this.price = price;
 	}
 
+	@Override
 	public boolean bookSeat(Passenger passenger) {
 		boolean booked = false;
 		System.out.printf("%s -> %s flight\n", getOrigin(), getDestination());
@@ -26,9 +27,13 @@ public class FixedPriceFlight extends Flight {
 		}
 		return booked;
 	}
-
+	
 	@Override
 	public FlightPackage getPackage() {
 		return () -> price;
+	}
+	
+	public double getPrice() {
+		return price;
 	}
 }
