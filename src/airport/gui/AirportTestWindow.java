@@ -149,7 +149,7 @@ public class AirportTestWindow extends JFrame {
 		try {
 			double price = Double.parseDouble(priceField.getText());
 			String from = fromField.getText(); 
-			String to = fromField.getText();
+			String to = toField.getText();
 			
 			ImplementedFlight flight = new ImplementedFlight(from, to, price);
 			flight.addExtra("Champagne", ChampagneDuringFlightPackage::new);
