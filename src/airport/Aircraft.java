@@ -1,5 +1,9 @@
 package airport;
 
+// IMPORTANTE!
+// Un aereo puo' essere utilizzato per piu' voli
+// Quindi i posti disponibili dorvrebbero essere relativi ad un dato volo
+
 public class Aircraft {
 	private int id;
 	private int availableSeats;

@@ -3,7 +3,7 @@ package airport.gui;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
-import java.util.Enumeration;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,36 +21,43 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 
-import airport.Flight;
-import airport.FlightPackage;
+import airport.FlightManager;
 import airport.Passenger;
-import airport.flightpackage.extra.ChampagneDuringFlightPackage;
+import airport.flight.CommercialFlightReservation;
+import airport.flight.FlightClass;
+import airport.flight.FlightExtra;
 import airport.wallet.StandardWallet;
 
 public class AirportTestWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private final Passenger passenger;
+	private final FlightManager manager;
 	
 	private JTextField fromField;
 	private JTextField toField;
 	private JTextField priceField;
 	
+	private DefaultListModel<FlightExtra> flightExtrasModel;
+	
 	private DefaultListModel<ImplementedFlight> availableFlightsModel;
-	private DefaultListModel<NamedExtraPackage> availableExtrasModel;
-	private DefaultListModel<NamedExtraPackage> selectedExtrasModel;
+	private DefaultListModel<FlightExtra> availableExtrasModel;
+	private DefaultListModel<FlightExtra> selectedExtrasModel;
 	
 	private JList<ImplementedFlight> availableFlights;
-	private JList<NamedExtraPackage> availableExtras;
-	private JList<NamedExtraPackage> selectedExtras;
+	private JList<FlightExtra> availableExtras;
+	private JList<FlightExtra> selectedExtras;
 	
 	public AirportTestWindow() {
 		super("Airport - Airport Test GUI");
 		
 		this.passenger = new Passenger("Dante", new StandardWallet(1000));
+		this.manager = new FlightManager();
 		
-		JPanel flightManagerPanel = new JPanel(new GridLayout(4, 2));
-		flightManagerPanel.setBorder(createTitledBorder("Flight Manager"));
+		JPanel managerPanel = new JPanel(new GridLayout(1, 2));
+		
+		JPanel flightDetailsPanel = new JPanel(new GridLayout(4, 2));
+		flightDetailsPanel.setBorder(createTitledBorder("Flight Manager"));
 		
 		fromField = new JTextField();
 		toField = new JTextField();
@@ -59,17 +66,65 @@ public class AirportTestWindow extends JFrame {
 		JButton addButton = new JButton("Add");
 		addButton.addActionListener(this::addFlight);
 		
-		flightManagerPanel.add(new JLabel("From:"));
-		flightManagerPanel.add(fromField);
+		flightDetailsPanel.add(new JLabel("From:"));
+		flightDetailsPanel.add(fromField);
 		
-		flightManagerPanel.add(new JLabel("To:"));
-		flightManagerPanel.add(toField);
+		flightDetailsPanel.add(new JLabel("To:"));
+		flightDetailsPanel.add(toField);
 		
-		flightManagerPanel.add(new JLabel("Price:"));
-		flightManagerPanel.add(priceField);
+		flightDetailsPanel.add(new JLabel("Price:"));
+		flightDetailsPanel.add(priceField);
 		
-		flightManagerPanel.add(new JLabel());
-		flightManagerPanel.add(addButton);
+		flightDetailsPanel.add(new JLabel());
+		flightDetailsPanel.add(addButton);
+		
+		
+		JPanel flightExtrasPanel = new JPanel();
+		flightExtrasPanel.setLayout(new BoxLayout(flightExtrasPanel, BoxLayout.PAGE_AXIS));
+		
+		flightExtrasModel = new DefaultListModel<>();
+		JList<FlightExtra> flightExtrasList = new JList<>(flightExtrasModel);
+		flightExtrasList.setBorder(createTitledBorder("Extras"));
+		
+		JScrollPane flightExtrasScrollPane = new JScrollPane(flightExtrasList);
+		
+		JButton removeSelectedExtraButton = new JButton("Remove selected");
+		removeSelectedExtraButton.addActionListener(e -> {
+			int selectedIndex = flightExtrasList.getSelectedIndex();
+			flightExtrasModel.remove(selectedIndex);
+		});
+		
+		JPanel flightExtraDetailPanel = new JPanel(new GridLayout(3, 2));
+		
+		JTextField extraNameField = new JTextField("Champagne");
+		JTextField extraPriceField = new JTextField("10");
+		
+		JButton addExtraButton = new JButton("Add");
+		addExtraButton.addActionListener(e -> {
+			try {
+				double price = Double.parseDouble(extraPriceField.getText());
+				String name = extraNameField.getText();
+				
+				flightExtrasModel.addElement(new VisibleFlightExtra(name, price));
+				
+			} catch (NumberFormatException nfe) {
+				// error handling
+			}
+		});
+		
+		flightExtraDetailPanel.add(new JLabel("Name: "));
+		flightExtraDetailPanel.add(extraNameField);
+		flightExtraDetailPanel.add(new JLabel("Price: "));
+		flightExtraDetailPanel.add(extraPriceField);
+		flightExtraDetailPanel.add(new JLabel());		
+		flightExtraDetailPanel.add(addExtraButton);
+		
+		flightExtrasPanel.add(flightExtrasScrollPane);
+		flightExtrasPanel.add(removeSelectedExtraButton);
+		flightExtrasPanel.add(flightExtraDetailPanel);
+		
+		managerPanel.add(flightDetailsPanel);
+		managerPanel.add(flightExtrasPanel);
 		
 		
 		JPanel bookFlightPanel = new JPanel();
@@ -125,7 +180,7 @@ public class AirportTestWindow extends JFrame {
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
-		mainPanel.add(flightManagerPanel);
+		mainPanel.add(managerPanel);
 		mainPanel.add(passengerPanel);
 		
 		this.add(mainPanel);
@@ -145,6 +200,7 @@ public class AirportTestWindow extends JFrame {
 		from.remove(elementIndex);
 	}
 	
+	
 	private void addFlight(ActionEvent event) {
 		try {
 			double price = Double.parseDouble(priceField.getText());
@@ -152,8 +208,14 @@ public class AirportTestWindow extends JFrame {
 			String to = toField.getText();
 			
 			ImplementedFlight flight = new ImplementedFlight(from, to, price);
-			flight.addExtra("Champagne", ChampagneDuringFlightPackage::new);
-			availableFlightsModel.addElement(flight);		
+			for (int i = 0; i < flightExtrasModel.getSize(); i++) {
+				FlightExtra extra = flightExtrasModel.getElementAt(i);
+				flight.addExtra(extra);
+			}
+			
+			manager.add(flight);
+			
+			availableFlightsModel.addElement(flight);
 			
 		} catch(NumberFormatException nfe) {
 			JOptionPane.showConfirmDialog(this, "Confirm dialog");
@@ -163,24 +225,25 @@ public class AirportTestWindow extends JFrame {
 	private void updateExtras(ListSelectionEvent e) {
 		availableExtrasModel.removeAllElements();
 		selectedExtrasModel.removeAllElements();
-		for (NamedExtraPackage extra : availableFlights.getSelectedValue().getExtras()) {
+		Iterator<FlightExtra> it = availableFlights.getSelectedValue().getExtras(); 
+		while (it.hasNext()) {
+			FlightExtra extra = it.next();
 			availableExtrasModel.addElement(extra);
 		}
 	}
 	
 	private void bookSelectedFlight(ActionEvent e) {
-		Flight flight = availableFlights.getSelectedValue();
-		if (flight.bookSeat(passenger)) {
-			FlightPackage packet = flight.getPackage();
-			Enumeration<NamedExtraPackage> it = selectedExtrasModel.elements();
-			while (it.hasMoreElements()) {
-				NamedExtraPackage extra = it.nextElement();
-				packet = extra.apply(packet);
-			}
-			
-			passenger.bookFlight(packet);
-			JOptionPane.showMessageDialog(this, "Flight total price: " + packet.getPrice());
+		ImplementedFlight flight = availableFlights.getSelectedValue();
+		FlightClass flightClass = flight.getClasses().next();
+	
+//		CommercialFlightReservation reservation = new CommercialFlightReservation(passenger, flight, flightClass);
+		CommercialFlightReservation reservation = new CommercialFlightReservation(flight, flightClass);
+		for (int i = 0; i < selectedExtrasModel.getSize(); i++) {
+			FlightExtra extra = selectedExtrasModel.getElementAt(i);
+			reservation.addExtra(extra);
 		}
+		
+		manager.finalizeOrder(passenger, reservation);
 	}
 	
 	public static void main(String[] args) {

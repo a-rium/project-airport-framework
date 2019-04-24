@@ -15,9 +15,14 @@ public class StandardWallet implements Wallet {
 	}
 
 	@Override
-	public void charge(double amount) {
-		balance -= amount;
-		System.out.printf("Wallet: charged %.2f$, new balance: %.2f\n", amount, balance);
+	public boolean charge(double amount) {
+		boolean enoughBalance = balance >= amount; 
+		if (enoughBalance) {
+			balance -= amount;
+			System.out.printf("Wallet: charged %.2f$, new balance: %.2f\n", amount, balance);
+		}
+		
+		return enoughBalance;
 	}
 
 	@Override
