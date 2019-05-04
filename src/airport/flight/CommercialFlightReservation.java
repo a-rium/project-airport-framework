@@ -17,13 +17,6 @@ public class CommercialFlightReservation extends FlightReservation {
 		this.extras = new ArrayList<>();
 	}
 	
-//	public CommercialFlightReservation(Passenger passenger, CommercialFlight flight, FlightClass flightClass) {
-//		super(passenger, flight);
-//		
-//		this.flightClass = flightClass;
-//		this.extras = new ArrayList<>();
-//	}
-
 	@Override
 	public double getPrice() {
 		// Should check that flightClass is really a flight class and if there are available seats
