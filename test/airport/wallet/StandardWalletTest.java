@@ -1,28 +1,51 @@
-package tests;
+package airport.wallet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import airport.Wallet;
-import airport.wallet.StandardWallet;
-
-public class WalletTest {
+public class StandardWalletTest {	
+	private StandardWallet wallet;
+	private final static double defaultBalance = 1000;
 	
-	Wallet w;
-	
-	@Before
-	public void init() {
-		w = new StandardWallet(0);
+	@BeforeEach
+	public void dataSetInitialization() {
+		this.wallet = new StandardWallet(defaultBalance);
 	}
 	
 	@Test
-	void test() {
-		init();
-		w.add(1);
-		assertEquals(1, w.getBalance());
-		w.charge(1.0);
-		assertEquals(0, w.getBalance());
+	public void moneyCanBeAddedTo() {
+		final double moneyToAdd = 100;
+		wallet.add(moneyToAdd);
+		
+		Assertions.assertEquals(wallet.getBalance(), defaultBalance + moneyToAdd);
+	}
+	
+	@Test
+	public void canBeSuccessfullyCharged() {
+		final double moneyToCharge = 100;
+		Assertions.assertTrue(wallet.charge(moneyToCharge));
+	}
+	
+	@Test
+	public void cannotChargeMoreThanTheCurrentBalance() {
+		final double moneyToCharge = defaultBalance + 1;
+		Assertions.assertFalse(wallet.charge(moneyToCharge));
+	}
+	
+	@Test
+	public void moneyIsWithdrawnWhenChargedSuccessfully() {
+		final double moneyToCharge = 100;
+		wallet.charge(moneyToCharge);
+		
+		Assertions.assertEquals(wallet.getBalance(), defaultBalance - moneyToCharge);
+	}	
+	
+	@Test
+	public void moneyIsNotWithdrawnWhenTheChargedAmountIsGreaterThanBalance() {
+		final double moneyToCharge = defaultBalance + 100;
+		wallet.charge(moneyToCharge);
+		
+		Assertions.assertEquals(wallet.getBalance(), defaultBalance);
 	}
 }

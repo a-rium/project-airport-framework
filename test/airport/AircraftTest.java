@@ -1,4 +1,4 @@
-package tests;
+package airport;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,14 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import airport.Aircraft;
-
 class AircraftTest {
 	private Aircraft aircraft;
 
 	@BeforeEach
-	public void init() {
-		aircraft = new Aircraft(0, 1);
+	public void dataSetInitialization() {
+		this.aircraft = new Aircraft(0, 1);
 	}
 
 	@Test
@@ -26,5 +24,4 @@ class AircraftTest {
 		aircraft.bookSeat();
 		assertTrue(aircraft.isFull());
 	}
-
 }
