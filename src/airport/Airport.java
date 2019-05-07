@@ -1,13 +1,15 @@
 package airport;
 
 import java.time.ZoneId;
+import java.util.List;
 
-public class Airport {
+import generic.GenericObserver;
+
+public class Airport implements GenericObserver<FlightNotification> {
 	private String name;
 	private ZoneId timeZone;
-	
+
 	public Airport(String name, ZoneId timeZone) {
-		super();
 		this.name = name;
 		this.timeZone = timeZone;
 	}
@@ -16,17 +18,16 @@ public class Airport {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public ZoneId getTimeZone() {
 		return timeZone;
 	}
 
-	public void setTimeZone(ZoneId timeZone) {
-		this.timeZone = timeZone;
+	@Override
+	public void update(FlightNotification notification) {
+		System.out.println(notification.getMessage());
 	}
-	
-	
+
+	public List<Flight> departingFlights(FlightManager flightManager) {
+		return flightManager.list(flight -> flight.getOrigin().equals(this.getName()));
+	}
 }
