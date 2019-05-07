@@ -11,11 +11,6 @@ public class Passenger implements GenericObserver<FlightNotification> {
 		this.wallet = wallet;
 	}
 
-//	public void bookFlight(FlightPackage flight) {
-//		System.out.println("Booking flight...");
-//		wallet.charge(flight.getPrice());
-//	}
-//
 	public String getName() {
 		return name;
 	}

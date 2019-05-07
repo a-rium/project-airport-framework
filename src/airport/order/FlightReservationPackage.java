@@ -1,16 +1,15 @@
-package airport;
+package airport.order;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import airport.order.FlightOrderVisitor;
+import airport.FlightOrder;
 
 public class FlightReservationPackage implements FlightOrder, Iterable<FlightOrder> {
 	private final List<FlightOrder> orders;
 
-	public FlightReservationPackage()
-	{
+	public FlightReservationPackage() {
 		this.orders = new ArrayList<>();
 	}
 

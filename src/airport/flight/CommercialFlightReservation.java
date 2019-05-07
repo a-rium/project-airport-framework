@@ -3,8 +3,8 @@ package airport.flight;
 import java.util.ArrayList;
 import java.util.List;
 
-import airport.FlightReservation;
 import airport.Passenger;
+import airport.order.FlightReservation;
 
 public class CommercialFlightReservation extends FlightReservation {
 	private final FlightClass flightClass;

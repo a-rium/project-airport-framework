@@ -1,21 +1,15 @@
-package airport;
+package airport.order;
 
-import airport.order.FlightOrderVisitor;
+import airport.Flight;
+import airport.FlightOrder;
 
 public abstract class FlightReservation implements FlightOrder {
-//	private final Passenger passenger;
 	private final Flight flight;
 	
 	public FlightReservation(Flight flight) {
 		this.flight = flight;
 	}
 	
-//	
-//	public FlightReservation(Passenger passenger, Flight flight) {
-//		this.passenger = passenger;
-//		this.flight = flight;
-//	}
-
 	public Flight getFlight() {
 		return flight;
 	}
