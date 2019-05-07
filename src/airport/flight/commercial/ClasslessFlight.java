@@ -1,7 +1,5 @@
 package airport.flight.commercial;
 
-import java.time.ZonedDateTime;
-
 import airport.Aircraft;
 import airport.flight.CommercialFlight;
 import airport.flight.FlightClass;

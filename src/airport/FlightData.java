@@ -1,6 +1,5 @@
 package airport;
 
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 public class FlightData {
@@ -18,27 +17,13 @@ public class FlightData {
 	public Airport getOrigin() {
 		return origin;
 	}
-	public void setOrigin(Airport origin) {
-		this.origin = origin;
-	}
 	public Airport getDestination() {
 		return destination;
-	}
-	public void setDestination(Airport destination) {
-		this.destination = destination;
 	}
 	public ZonedDateTime getDeparture() {
 		return departure;
 	}
-	public void setDeparture(ZonedDateTime departure) {
-		this.departure = departure;
-	}
 	public ZonedDateTime getArrival() {
 		return arrival;
-	}
-	public void setArrival(ZonedDateTime arrival) {
-		this.arrival = arrival;
-	}
-	
-	
+	}	
 }

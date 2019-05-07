@@ -1,7 +1,5 @@
 package airport.gui;
 
-import java.time.ZonedDateTime;
-
 import airport.FlightData;
 import airport.flight.commercial.ClasslessFlight;
 

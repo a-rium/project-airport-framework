@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import airport.order.FlightOrderVisitor;
 import airport.order.visitor.FlightBookerVisitor;
 
 public class FlightManager {

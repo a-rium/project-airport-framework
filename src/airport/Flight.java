@@ -1,8 +1,5 @@
 package airport;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-
 import generic.GenericObservable;
 import generic.GenericObserver;
 import generic.ObserverRegistry;
