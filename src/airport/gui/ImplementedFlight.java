@@ -1,10 +1,13 @@
 package airport.gui;
 
+import java.time.ZonedDateTime;
+
+import airport.FlightData;
 import airport.flight.commercial.ClasslessFlight;
 
 public class ImplementedFlight extends ClasslessFlight {
-	public ImplementedFlight(String origin, String destination, double price) {
-		super(origin, destination, new DummyAircraft(0), price);
+	public ImplementedFlight(FlightData data, double price) {
+		super(data, new DummyAircraft(0), price);
 	}
 	
 	@Override
