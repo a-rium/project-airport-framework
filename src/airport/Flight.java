@@ -6,14 +6,18 @@ import generic.ObserverRegistry;
 
 // Rappresenta un generico volo.
 public abstract class Flight implements GenericObservable<FlightNotification> {
-	private FlightData data;
+	private FlightData flightData;
 	private Aircraft aircraft;
 	private ObserverRegistry<FlightNotification> observers; 
 
-	public Flight(FlightData data, Aircraft aircraft) {
-		this.data = data;
+	public Flight(FlightData flightData, Aircraft aircraft) {
+		this.flightData = flightData;
 		this.aircraft = aircraft;
 	}
+	
+	/*public Flight(String origin, String destination, Aircraft aircraft) {
+		this(new FlightData(new Airport(origin), new Airport(destination), null, null), aircraft);
+	}*/
 
 	@Override
 	public void addObserver(GenericObserver<FlightNotification> observer) {
@@ -31,11 +35,11 @@ public abstract class Flight implements GenericObservable<FlightNotification> {
 	}
 	
 	public String getOrigin() {
-		return data.getOrigin().getName();
+		return flightData.getOrigin().getName();
 	}
 
 	public String getDestination() {
-		return data.getDestination().getName();
+		return flightData.getDestination().getName();
 	}
 
 	public Aircraft getAircraft() {

@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import airport.Aircraft;
+import airport.Airport;
+import airport.FlightData;
 
 class CommercialFlightReservationTest {
 	private CommercialFlightReservation target;
@@ -13,7 +15,9 @@ class CommercialFlightReservationTest {
 	@BeforeEach
 	public void dataSetInitialization() {
 		Aircraft aircraft = new Aircraft(0, 100);
-		CommercialFlight flight = new CommercialFlight("A", "B", aircraft);
+		Airport airport1 = new Airport("A"), airport2 = new Airport("B");
+		FlightData flightData = new FlightData(airport1, airport2, null, null);
+		CommercialFlight flight = new CommercialFlight(flightData, aircraft);
 		FlightClass flightClass = new FlightClass("Default", price);
 		this.target = new CommercialFlightReservation(flight, flightClass);
 	}

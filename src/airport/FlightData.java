@@ -1,7 +1,5 @@
 package airport;
 
-import java.time.ZonedDateTime;
-
 public class FlightData {
 	private Airport origin;
 	private Airport destination;
