@@ -1,18 +1,20 @@
 package airport.flight;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import airport.Aircraft;
 import airport.Flight;
+import airport.FlightData;
 
 public class CommercialFlight extends Flight {
 	private List<FlightClass> classes;
 	private List<FlightExtra> extras;
 
-	public CommercialFlight(String origin, String destination, Aircraft aircraft) {
-		super(origin, destination, aircraft);
+	public CommercialFlight(FlightData data, Aircraft aircraft) {
+		super(data, aircraft);
 		this.classes = new ArrayList<>();
 		this.extras = new ArrayList<>();
 	}

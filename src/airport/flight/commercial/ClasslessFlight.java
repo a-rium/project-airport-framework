@@ -1,18 +1,21 @@
 package airport.flight.commercial;
 
+import java.time.ZonedDateTime;
+
 import airport.Aircraft;
 import airport.flight.CommercialFlight;
 import airport.flight.FlightClass;
+import airport.FlightData;
 
 public class ClasslessFlight extends CommercialFlight {
-	public ClasslessFlight(String origin, String destination, Aircraft aircraft, String planName, double price) {
-		super(origin, destination, aircraft);
+	public ClasslessFlight(FlightData data, Aircraft aircraft, String planName, double price) {
+		super(data, aircraft);
 		
 		addClass(new FlightClass(planName, price));
 	}
 	
-	public ClasslessFlight(String origin, String destination, Aircraft aircraft, double price) {
-		this(origin, destination, aircraft, "Base", price);
+	public ClasslessFlight(FlightData data, Aircraft aircraft, double price) {
+		this(data, aircraft, "Base", price);
 	}
 	
 	public double getPrice() {

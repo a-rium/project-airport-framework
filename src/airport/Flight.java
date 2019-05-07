@@ -1,19 +1,20 @@
 package airport;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 import generic.GenericObservable;
 import generic.GenericObserver;
 import generic.ObserverRegistry;
 
 // Rappresenta un generico volo.
 public abstract class Flight implements GenericObservable<FlightNotification> {
-	private String origin;
-	private String destination;
+	private FlightData data;
 	private Aircraft aircraft;
 	private ObserverRegistry<FlightNotification> observers; 
 
-	public Flight(String origin, String destination, Aircraft aircraft) {
-		this.destination = destination;
-		this.origin = origin;
+	public Flight(FlightData data, Aircraft aircraft) {
+		this.data = data;
 		this.aircraft = aircraft;
 	}
 
@@ -33,11 +34,11 @@ public abstract class Flight implements GenericObservable<FlightNotification> {
 	}
 	
 	public String getOrigin() {
-		return origin;
+		return data.getOrigin().getName();
 	}
 
 	public String getDestination() {
-		return destination;
+		return data.getDestination().getName();
 	}
 
 	public Aircraft getAircraft() {
