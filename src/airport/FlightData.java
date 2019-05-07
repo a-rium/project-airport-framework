@@ -5,10 +5,10 @@ import java.time.ZonedDateTime;
 public class FlightData {
 	private Airport origin;
 	private Airport destination;
-	private ZonedDateTime departure;
-	private ZonedDateTime arrival;
+	private String departure;
+	private String arrival;
 	
-	public FlightData(Airport origin, Airport destination, ZonedDateTime departure, ZonedDateTime arrival) {
+	public FlightData(Airport origin, Airport destination, String departure, String arrival) {
 		this.origin = origin;
 		this.destination = destination;
 		this.departure = departure;
@@ -20,10 +20,10 @@ public class FlightData {
 	public Airport getDestination() {
 		return destination;
 	}
-	public ZonedDateTime getDeparture() {
+	public String getDeparture() {
 		return departure;
 	}
-	public ZonedDateTime getArrival() {
+	public String getArrival() {
 		return arrival;
 	}	
 }

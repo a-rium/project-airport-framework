@@ -1,25 +1,18 @@
 package airport;
 
-import java.time.ZoneId;
 import java.util.List;
 
 import generic.GenericObserver;
 
 public class Airport implements GenericObserver<FlightNotification> {
 	private String name;
-	private ZoneId timeZone;
 
-	public Airport(String name, ZoneId timeZone) {
+	public Airport(String name) {
 		this.name = name;
-		this.timeZone = timeZone;
 	}
 
 	public String getName() {
 		return name;
-	}
-
-	public ZoneId getTimeZone() {
-		return timeZone;
 	}
 
 	@Override
