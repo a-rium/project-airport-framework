@@ -13,8 +13,13 @@ public class Main {
 		// - Crea i velivoli
 		// - Imposta i vari pacchetti extra
 		Aircraft boeing = new Aircraft(0, 1);
-		Flight pisaFlorence = new ClasslessFlight("Pisa", "Florence", boeing, 0);
-		Flight pisaViareggio = new ClasslessFlight("Pisa", "Viareggio", boeing, 0);
+		
+		Airport pisa = new Airport("Pisa");
+		Airport viareggio = new Airport("Viareggio");
+		Airport florence = new Airport("Florence");
+		
+		Flight pisaFlorence = new ClasslessFlight(new FlightData(pisa, florence, "09:00", "10:00"), boeing, 0);
+		Flight pisaViareggio = new ClasslessFlight(new FlightData(pisa, viareggio, "11:00", "12:00"), boeing, 0);
 		manager.add(pisaViareggio);
 		manager.add(pisaFlorence);
 

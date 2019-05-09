@@ -21,6 +21,8 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 
+import airport.Airport;
+import airport.FlightData;
 import airport.FlightManager;
 import airport.Passenger;
 import airport.flight.CommercialFlightReservation;
@@ -207,7 +209,9 @@ public class AirportTestWindow extends JFrame {
 			String from = fromField.getText(); 
 			String to = toField.getText();
 			
-			ImplementedFlight flight = new ImplementedFlight(from, to, price);
+			Airport fromAirport = new Airport(from);
+			Airport toAirport = new Airport(to);
+			ImplementedFlight flight = new ImplementedFlight(new FlightData(fromAirport, toAirport, null, null), price);
 			for (int i = 0; i < flightExtrasModel.getSize(); i++) {
 				FlightExtra extra = flightExtrasModel.getElementAt(i);
 				flight.addExtra(extra);
