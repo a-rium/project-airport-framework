@@ -5,10 +5,10 @@ import java.util.List;
 import airport.Aircraft;
 import airport.Flight;
 import airport.FlightOrder;
-import airport.FlightReservation;
-import airport.FlightReservationPackage;
 import airport.Passenger;
 import airport.order.FlightOrderVisitor;
+import airport.order.FlightReservation;
+import airport.order.FlightReservationPackage;
 
 public class FlightBookerVisitor implements FlightOrderVisitor {
 	private final Passenger client;
