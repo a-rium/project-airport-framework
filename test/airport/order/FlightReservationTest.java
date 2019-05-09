@@ -5,7 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import airport.Aircraft;
+import airport.Airport;
 import airport.Flight;
+import airport.FlightData;
 import airport.flight.commercial.ClasslessFlight;
 
 public class FlightReservationTest {
@@ -25,7 +27,11 @@ public class FlightReservationTest {
 	@BeforeEach
 	public void dataSetInitialization() {
 		Aircraft aircraft = new Aircraft(0, 100);
-		Flight flight = new ClasslessFlight("Pistoia", "Firenze", aircraft, 100);
+		Airport fromAirport = new Airport("Pistoia");
+		Airport toAirport = new Airport("Firenze");
+		FlightData flightData = new FlightData(fromAirport, toAirport, null, null);
+		Flight flight = new ClasslessFlight(flightData, aircraft, 100);
+
 		
 		target = new DummyFlightReservation(flight);
 	}
@@ -33,7 +39,10 @@ public class FlightReservationTest {
 	@Test
 	public void cannotAddComponentsToIt() {
 		Aircraft aircraft = new Aircraft(0, 100);
-		Flight flight = new ClasslessFlight("Firenze", "Pistoia", aircraft, 100);
+		Airport fromAirport = new Airport("Firenze");
+		Airport toAirport = new Airport("Pistoia");
+		FlightData flightData = new FlightData(fromAirport, toAirport, null, null);
+		Flight flight = new ClasslessFlight(flightData, aircraft, 100);
 		
 		FlightReservation other = new DummyFlightReservation(flight);
 		
@@ -43,7 +52,10 @@ public class FlightReservationTest {
 	@Test
 	public void cannotRemoveComponentsFromIt() {
 		Aircraft aircraft = new Aircraft(0, 100);
-		Flight flight = new ClasslessFlight("Firenze", "Pistoia", aircraft, 100);
+		Airport fromAirport = new Airport("Firenze");
+		Airport toAirport = new Airport("Pistoia");
+		FlightData flightData = new FlightData(fromAirport, toAirport, null, null);
+		Flight flight = new ClasslessFlight(flightData, aircraft, 100);
 		
 		FlightReservation other = new DummyFlightReservation(flight);
 		

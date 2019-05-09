@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import airport.Aircraft;
+import airport.Airport;
+import airport.FlightData;
 import airport.flight.FlightClass;
 
 class ClasslessFlightTest {
@@ -16,7 +18,10 @@ class ClasslessFlightTest {
 	@BeforeEach
 	public void dataSetInitialization() {
 		Aircraft aircraft = new Aircraft(0, 100);
-		this.target = new ClasslessFlight("A", "B", aircraft, price);
+		Airport fromAirport = new Airport("a");
+		Airport toAirport = new Airport("b");
+		FlightData flightData = new FlightData(fromAirport, toAirport, null, null);
+		this.target = new ClasslessFlight(flightData, aircraft, price);
 	}
 	
 	@Test
