@@ -22,12 +22,14 @@ public class FlightManager {
 		return flights.stream().filter(criteria).collect(Collectors.toList());
 	}
 	
-	public void finalizeOrder(Passenger client, FlightOrder order) {
+	public boolean finalizeOrder(Passenger client, FlightOrder order) {
 		double price = order.getPrice();
 		
 		boolean success = client.pay(price);
 		if (success) {
 			order.accept(new FlightBookerVisitor(client, flights));
-		}
+		} 
+
+		return success;
 	}
 }
