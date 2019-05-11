@@ -134,8 +134,10 @@ public class FlightManagementPanel extends JPanel {
 			
 			flightsModel.addElement(flight);
 			
+			JOptionPane.showMessageDialog(this, "Added flight!", "Airport Message", JOptionPane.INFORMATION_MESSAGE);
+			
 		} catch(NumberFormatException nfe) {
-			JOptionPane.showMessageDialog(this, "Field 'Price' has to be a number");
+			JOptionPane.showMessageDialog(this, "Field 'Price' has to be a number", "Airport Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -147,7 +149,7 @@ public class FlightManagementPanel extends JPanel {
 			flightExtrasModel.addElement(new VisibleFlightExtra(name, price));
 			
 		} catch (NumberFormatException nfe) {
-			JOptionPane.showMessageDialog(this, "Field 'Price' has to be a number");
+			JOptionPane.showMessageDialog(this, "Field 'Price' has to be a number", "Airport Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

@@ -9,8 +9,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 
 import airport.FlightManager;
@@ -26,6 +28,9 @@ public class PassengerPanel extends JPanel {
 	private final Passenger passenger;
 	private final FlightManager manager;
 	
+	private JLabel currencyLabel;
+	private JTextField rechargeAmountField;
+	
 	private DefaultListModel<FlightExtra> availableExtrasModel;
 	private DefaultListModel<FlightExtra> selectedExtrasModel;
 	
@@ -39,7 +44,26 @@ public class PassengerPanel extends JPanel {
 		this.manager = manager;
 		this.passenger = passenger;
 		
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setBorder(GuiUtils.createTitledBorder("Passenger"));
+
+		JPanel walletPanel = new JPanel(new GridLayout(3, 2));
+		walletPanel.setBorder(GuiUtils.createTitledBorder("Wallet Management"));
+		
+		currencyLabel = new JLabel("" + passenger.getWallet().getBalance());
+		rechargeAmountField = new JTextField();
+		JButton rechargeButton = new JButton("Recharge wallet");
+		rechargeButton.addActionListener(this::rechargeWallet);
+		
+		walletPanel.add(new JLabel("Available currency: "));
+		walletPanel.add(currencyLabel);
+		walletPanel.add(new JLabel("Recharge by: "));
+		walletPanel.add(rechargeAmountField);
+		walletPanel.add(new JLabel());
+		walletPanel.add(rechargeButton);
+		
 		JPanel bookFlightPanel = new JPanel();
+		bookFlightPanel.setBorder(GuiUtils.createTitledBorder("Book Flight"));
 		
 		availableExtrasModel = new DefaultListModel<>();
 		selectedExtrasModel = new DefaultListModel<>();
@@ -82,10 +106,21 @@ public class PassengerPanel extends JPanel {
 		JButton bookButton = new JButton("Book Flight");
 		bookButton.addActionListener(this::bookSelectedFlight);
 		
-		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		this.setBorder(GuiUtils.createTitledBorder("Passenger"));
+		this.add(walletPanel);
 		this.add(bookFlightPanel);
 		this.add(bookButton);
+	}
+	
+	private void rechargeWallet(ActionEvent e) {
+		try {
+			double amount = Double.parseDouble(rechargeAmountField.getText());
+			passenger.getWallet().add(amount);
+			currencyLabel.setText("" + passenger.getWallet().getBalance());
+			JOptionPane.showMessageDialog(this, "Wallet successfully recharged!", "Airport Message", JOptionPane.INFORMATION_MESSAGE);
+			
+		} catch (NumberFormatException nfe) {
+			JOptionPane.showMessageDialog(this, "Field 'Recharge amount' has to be a number", "Airport Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	private <T> void moveElement(DefaultListModel<T> from, DefaultListModel<T> to, int elementIndex) {
@@ -113,6 +148,12 @@ public class PassengerPanel extends JPanel {
 			reservation.addExtra(extra);
 		}
 		
-		manager.finalizeOrder(passenger, reservation);
+		boolean success = manager.finalizeOrder(passenger, reservation);
+		if (success) {
+			JOptionPane.showMessageDialog(this, "Flight successfully booked!", "Airport Message", JOptionPane.INFORMATION_MESSAGE);
+			currencyLabel.setText("" + passenger.getWallet().getBalance());
+		} else {
+			JOptionPane.showMessageDialog(this, "Insufficient credit!", "Airport Transaction Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
