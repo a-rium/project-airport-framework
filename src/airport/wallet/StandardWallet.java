@@ -21,7 +21,6 @@ public class StandardWallet implements Wallet {
 			balance -= amount;
 			System.out.printf("Wallet: charged %.2f$, new balance: %.2f\n", amount, balance);
 		}
-		
 		return enoughBalance;
 	}
 

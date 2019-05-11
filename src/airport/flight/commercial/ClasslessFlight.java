@@ -22,6 +22,6 @@ public class ClasslessFlight extends CommercialFlight {
 	
 	@Override
 	public void addClass(FlightClass flightClass) {
-		throw new UnsupportedOperationException("ClasslessFlight can on;y have one flight");
+		throw new UnsupportedOperationException("ClasslessFlight can only have one class");
 	}
 }
