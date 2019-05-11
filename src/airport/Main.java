@@ -3,7 +3,6 @@ package airport;
 import java.util.List;
 
 import airport.flight.commercial.ClasslessFlight;
-import airport.wallet.StandardWallet;
 
 public class Main {
 	public static void main(String[] args) {
@@ -23,7 +22,7 @@ public class Main {
 		manager.add(pisaViareggio);
 		manager.add(pisaFlorence);
 
-		Passenger passenger = new Passenger("Marco", new StandardWallet(10000));
+//		Passenger passenger = new Passenger("Marco", new StandardWallet(10000));
 		// Operazioni eseguite dal Passeggero
 		// -- Prenotazione voli
 		// - Ricerca un volo dato un FlightManager

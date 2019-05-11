@@ -3,7 +3,6 @@ package airport.flight;
 import java.util.ArrayList;
 import java.util.List;
 
-import airport.Passenger;
 import airport.order.FlightReservation;
 
 public class CommercialFlightReservation extends FlightReservation {

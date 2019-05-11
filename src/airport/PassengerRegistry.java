@@ -6,7 +6,7 @@ import java.util.List;
 import generic.GenericObserver;
 import generic.ObserverRegistry;
 
-public class PassengerRegistry<T> extends ObserverRegistry<T> {
+public class PassengerRegistry<T extends Passenger> extends ObserverRegistry<T> {
 	public PassengerRegistry() {
 		super();
 	}

@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.BoxLayout;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,7 +15,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import airport.Airport;
-import airport.Flight;
 import airport.FlightData;
 import airport.FlightManager;
 import airport.flight.CommercialFlight;
