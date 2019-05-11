@@ -82,11 +82,10 @@ public class PassengerPanel extends JPanel {
 		JButton bookButton = new JButton("Book Flight");
 		bookButton.addActionListener(this::bookSelectedFlight);
 		
-		JPanel passengerPanel = new JPanel();
-		passengerPanel.setLayout(new BoxLayout(passengerPanel, BoxLayout.PAGE_AXIS));
-		passengerPanel.setBorder(GuiUtils.createTitledBorder("Passenger"));
-		passengerPanel.add(bookFlightPanel);
-		passengerPanel.add(bookButton);
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setBorder(GuiUtils.createTitledBorder("Passenger"));
+		this.add(bookFlightPanel);
+		this.add(bookButton);
 	}
 	
 	private <T> void moveElement(DefaultListModel<T> from, DefaultListModel<T> to, int elementIndex) {

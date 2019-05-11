@@ -30,6 +30,7 @@ public class AirportTestWindow extends JFrame {
 		this.manager = new FlightManager();
 		
 		airportModel = new AirportDataModel();
+		flightsModel = new DefaultListModel<>();
 		
 		JTabbedPane mainPanel = new JTabbedPane();
 		
