@@ -15,6 +15,10 @@ public class Passenger implements GenericObserver<FlightNotification> {
 		return name;
 	}
 	
+	public Wallet getWallet() {
+		return wallet;
+	}
+	
 	public boolean pay(double amount) {
 		return wallet.charge(amount);
 	}
