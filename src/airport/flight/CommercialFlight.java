@@ -11,9 +11,11 @@ import airport.FlightData;
 public class CommercialFlight extends Flight {
 	private List<FlightClass> classes;
 	private List<FlightExtra> extras;
+	private FlightData flightData;
 
-	public CommercialFlight(FlightData data, Aircraft aircraft) {
-		super(data, aircraft);
+	public CommercialFlight(FlightData flightData, Aircraft aircraft) {
+		super(aircraft);
+		this.flightData = flightData;
 		this.classes = new ArrayList<>();
 		this.extras = new ArrayList<>();
 	}
@@ -33,4 +35,13 @@ public class CommercialFlight extends Flight {
 	public Iterator<FlightExtra> getExtras() {
 		return extras.iterator();
 	}
+	
+	public String getOrigin() {
+		return flightData.getOrigin().getName();
+	}
+
+	public String getDestination() {
+		return flightData.getDestination().getName();
+	}
+
 }
