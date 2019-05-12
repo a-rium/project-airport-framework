@@ -28,4 +28,15 @@ public class AirportTest {
 		flightManager.add(flight);
 		Assertions.assertTrue(airport.departingFlights(flightManager).contains(flight));
 	}
+	
+	@Test
+	public void flightDepartingFromAnotherAirportShouldNotBeReturned() {
+		Airport otherAirport = new Airport("B");
+		flightManager = new FlightManager();
+		aircraft = new Aircraft(0, 100);
+		flightData = new CommercialFlightData(otherAirport, airport, null, null);
+		flight = new CommercialFlight(flightData, aircraft);
+		flightManager.add(flight);
+		Assertions.assertFalse(airport.departingFlights(flightManager).contains(flight));
+	}
 }
