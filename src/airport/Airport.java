@@ -21,6 +21,6 @@ public class Airport implements GenericObserver<FlightNotification> {
 	}
 
 	public List<Flight> departingFlights(FlightManager flightManager) {
-		return flightManager.list(flight -> flight.getOrigin().equals(this.getName()));
+		return flightManager.list(flight -> flight.getOrigin().getName().equals(getName()));
 	}
 }
