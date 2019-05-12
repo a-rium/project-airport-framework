@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import airport.Aircraft;
 import airport.Airport;
-import airport.FlightData;
+import airport.flight.commercial.CommercialFlightData;
 
 class CommercialFlightReservationTest {
 	private CommercialFlightReservation target;
@@ -17,7 +17,7 @@ class CommercialFlightReservationTest {
 		Aircraft aircraft = new Aircraft(0, 100);
 		Airport fromAirport = new Airport("A");
 		Airport toAirport = new Airport("B");
-		FlightData flightData = new FlightData(fromAirport, toAirport, null, null);
+		CommercialFlightData flightData = new CommercialFlightData(fromAirport, toAirport, null, null);
 		CommercialFlight flight = new CommercialFlight(flightData, aircraft);
 		FlightClass flightClass = new FlightClass("Default", price);
 		this.target = new CommercialFlightReservation(flight, flightClass);

@@ -5,11 +5,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import airport.flight.CommercialFlight;
+import airport.flight.commercial.CommercialFlightData;
 
 public class AirportTest {
 	private FlightManager flightManager;
 	private Airport airport;
-	private FlightData flightData;
+	private CommercialFlightData flightData;
 	private CommercialFlight flight;
 	private Aircraft aircraft;
 	
@@ -22,7 +23,7 @@ public class AirportTest {
 	public void flightShouldBeDepartingFromAirport() {
 		flightManager = new FlightManager();
 		aircraft = new Aircraft(0, 100);
-		flightData = new FlightData(airport, airport, null, null);
+		flightData = new CommercialFlightData(airport, airport, null, null);
 		flight = new CommercialFlight(flightData, aircraft);
 		flightManager.add(flight);
 		Assertions.assertTrue(airport.departingFlights(flightManager).contains(flight));

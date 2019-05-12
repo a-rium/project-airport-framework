@@ -26,8 +26,8 @@ public class Passenger implements GenericObserver<FlightNotification> {
 	@Override
 	public void update(FlightNotification notification) {
 		Flight flight = notification.getFlight();
-		String origin = flight.getOrigin();
-		String destination = flight.getDestination();
+		String origin = flight.getOrigin().getName();
+		String destination = flight.getDestination().getName();
 		
 		System.out.printf("%s received a notification relative to the flight %s -> %s saying: %s\n", name, origin, destination, notification.getMessage());
 	}

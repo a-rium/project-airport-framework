@@ -5,15 +5,16 @@ import java.util.Iterator;
 import java.util.List;
 
 import airport.Aircraft;
+import airport.Airport;
 import airport.Flight;
-import airport.FlightData;
+import airport.flight.commercial.CommercialFlightData;
 
 public class CommercialFlight extends Flight {
 	private List<FlightClass> classes;
 	private List<FlightExtra> extras;
-	private FlightData flightData;
+	private CommercialFlightData flightData;
 
-	public CommercialFlight(FlightData flightData, Aircraft aircraft) {
+	public CommercialFlight(CommercialFlightData flightData, Aircraft aircraft) {
 		super(aircraft);
 		this.flightData = flightData;
 		this.classes = new ArrayList<>();
@@ -36,12 +37,12 @@ public class CommercialFlight extends Flight {
 		return extras.iterator();
 	}
 	
-	public String getOrigin() {
-		return flightData.getOrigin().getName();
+	public Airport getOrigin() {
+		return flightData.getOrigin();
 	}
 
-	public String getDestination() {
-		return flightData.getDestination().getName();
+	public Airport getDestination() {
+		return flightData.getDestination();
 	}
 
 }

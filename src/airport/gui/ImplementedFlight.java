@@ -1,11 +1,11 @@
 package airport.gui;
 
-import airport.FlightData;
 import airport.flight.commercial.ClasslessFlight;
+import airport.flight.commercial.CommercialFlightData;
 
 public class ImplementedFlight extends ClasslessFlight {
-	public ImplementedFlight(FlightData data, double price) {
-		super(data, new DummyAircraft(0), price);
+	public ImplementedFlight(CommercialFlightData flightData, double price) {
+		super(flightData, new DummyAircraft(0), price);
 	}
 	
 	@Override

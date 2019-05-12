@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import airport.Aircraft;
 import airport.Airport;
 import airport.Flight;
-import airport.FlightData;
 import airport.flight.commercial.ClasslessFlight;
+import airport.flight.commercial.CommercialFlightData;
 
 public class FlightReservationTest {
 	public class DummyFlightReservation extends FlightReservation {
@@ -29,7 +29,7 @@ public class FlightReservationTest {
 		Aircraft aircraft = new Aircraft(0, 100);
 		Airport fromAirport = new Airport("Pistoia");
 		Airport toAirport = new Airport("Firenze");
-		FlightData flightData = new FlightData(fromAirport, toAirport, null, null);
+		CommercialFlightData flightData = new CommercialFlightData(fromAirport, toAirport, null, null);
 		Flight flight = new ClasslessFlight(flightData, aircraft, 100);
 
 		
@@ -41,7 +41,7 @@ public class FlightReservationTest {
 		Aircraft aircraft = new Aircraft(0, 100);
 		Airport fromAirport = new Airport("Firenze");
 		Airport toAirport = new Airport("Pistoia");
-		FlightData flightData = new FlightData(fromAirport, toAirport, null, null);
+		CommercialFlightData flightData = new CommercialFlightData(fromAirport, toAirport, null, null);
 		Flight flight = new ClasslessFlight(flightData, aircraft, 100);
 		
 		FlightReservation other = new DummyFlightReservation(flight);
@@ -54,7 +54,7 @@ public class FlightReservationTest {
 		Aircraft aircraft = new Aircraft(0, 100);
 		Airport fromAirport = new Airport("Firenze");
 		Airport toAirport = new Airport("Pistoia");
-		FlightData flightData = new FlightData(fromAirport, toAirport, null, null);
+		CommercialFlightData flightData = new CommercialFlightData(fromAirport, toAirport, null, null);
 		Flight flight = new ClasslessFlight(flightData, aircraft, 100);
 		
 		FlightReservation other = new DummyFlightReservation(flight);

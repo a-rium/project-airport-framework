@@ -38,7 +38,7 @@ public class FlightBookerVisitor implements FlightOrderVisitor {
 			}
 		} else {
 			System.out.printf("Error: flight %s -> %s does not correspond to any availble flight\n", 
-					flight.getOrigin(), flight.getDestination());
+					flight.getOrigin().getName(), flight.getDestination().getName());
 		}
 	}
 

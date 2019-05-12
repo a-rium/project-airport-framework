@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import airport.Aircraft;
 import airport.Airport;
-import airport.FlightData;
 import airport.flight.FlightClass;
 
 class ClasslessFlightTest {
@@ -20,7 +19,7 @@ class ClasslessFlightTest {
 		Aircraft aircraft = new Aircraft(0, 100);
 		Airport fromAirport = new Airport("a");
 		Airport toAirport = new Airport("b");
-		FlightData flightData = new FlightData(fromAirport, toAirport, null, null);
+		CommercialFlightData flightData = new CommercialFlightData(fromAirport, toAirport, null, null);
 		this.target = new ClasslessFlight(flightData, aircraft, price);
 	}
 	

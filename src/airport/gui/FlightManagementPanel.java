@@ -15,10 +15,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import airport.Airport;
-import airport.FlightData;
 import airport.FlightManager;
 import airport.flight.CommercialFlight;
 import airport.flight.FlightExtra;
+import airport.flight.commercial.CommercialFlightData;
 
 public class FlightManagementPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -123,7 +123,7 @@ public class FlightManagementPanel extends JPanel {
 			String departingAt = departingAtField.getText();
 			String arrivingAt = arrivingAtField.getText();
 			
-			FlightData flightData = new FlightData(from, to, arrivingAt, departingAt);
+			CommercialFlightData flightData = new CommercialFlightData(from, to, arrivingAt, departingAt);
 			ImplementedFlight flight = new ImplementedFlight(flightData, price);
 			for (int i = 0; i < flightExtrasModel.getSize(); i++) {
 				FlightExtra extra = flightExtrasModel.getElementAt(i);

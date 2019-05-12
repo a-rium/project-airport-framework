@@ -1,12 +1,14 @@
-package airport;
+package airport.flight.commercial;
 
-public class FlightData {
+import airport.Airport;
+
+public class CommercialFlightData {
 	private Airport origin;
 	private Airport destination;
 	private String departure;
 	private String arrival;
 	
-	public FlightData(Airport origin, Airport destination, String departure, String arrival) {
+	public CommercialFlightData(Airport origin, Airport destination, String departure, String arrival) {
 		this.origin = origin;
 		this.destination = destination;
 		this.departure = departure;

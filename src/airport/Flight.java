@@ -30,7 +30,7 @@ public abstract class Flight implements GenericObservable<FlightNotification> {
 	public Aircraft getAircraft() {
 		return aircraft;
 	}
-	public abstract String getOrigin();
+	public abstract Airport getOrigin();
 
-	public abstract String getDestination();
+	public abstract Airport getDestination();
 }
